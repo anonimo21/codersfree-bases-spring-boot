@@ -1,0 +1,18 @@
+<!-- Header / Top menu -->
+<header th:fragment="navigation" class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+            <div class="flex items-center">
+                <a href="/" class="text-xl font-bold text-indigo-600">CodersFree</a>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a th:href="@{/}" th:class="${currentUri == '/'} ? 'text-indigo-600' : 'text-gray-700 hover:text-indigo-800'">Inicio</a>
+                <a th:href="@{/users}" th:class="${currentUri.startsWith('/users')} ? 'text-indigo-600' : 'text-gray-700 hover:text-indigo-800'">Usuarios</a>
+                <a th:href="@{/cursos}" th:class="${currentUri == '/cursos'} ? 'text-indigo-600' : 'text-gray-700 hover:text-indigo-800'">Cursos</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Login</a>
+            </div>
+        </div>
+    </div>
+</header>
