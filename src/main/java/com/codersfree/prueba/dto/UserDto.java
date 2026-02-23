@@ -17,7 +17,7 @@ import lombok.Setter;
 public class UserDto {
 
     @NotBlank(message = "El nombre es requerido")
-    @Size(min = 3, max = 10, message = "El nombre debe tener entre 3 y 10 caracteres")
+    @Size(min = 3, max = 20, message = "El nombre debe tener entre 3 y 20 caracteres")
     private String name;
 
     @NotBlank(message = "El email es requerido")

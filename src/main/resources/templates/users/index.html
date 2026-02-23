@@ -23,15 +23,30 @@
 
         <ul>
             <li th:each="user, loop : ${users}" th:object="${user}" class="mb-4 p-4 bg-gray-50 rounded">
-                <h2 class="text-lg font-semibold text-gray-800">ID: [[*{id}]]</h2>
-                <h2 class="text-lg font-semibold text-gray-800">Name: [[*{name}]]</h2>
+                <p class="text-lg font-semibold text-gray-800">ID: [[*{id}]]</p>
+                <p class="text-lg font-semibold text-gray-800">Name: [[*{name}]]</p>
                 <p class="text-gray-600">Email: [[*{email}]]</p>
                 <a th:href="@{/users/{id}(id=${user.id})}"
-                    class="inline-block my-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition font-medium\">Ver
-                    Detalles</a>
+                    class="inline-block my-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition font-medium">Ver
+                    Detalles
+                </a>
+                <a th:href="@{/users/{id}/edit(id=${user.id})}"
+                    class="inline-block my-4 px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition font-medium">Editar
+                    Usuario
+                </a>
+                <form th:action="@{/users/{id}(id=${user.id})}" method="post" class="inline-block" data-confirm="¿Eliminar este registro? Esta acción no se puede deshacer.">
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit"
+                        class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition font-medium">Eliminar
+                        Usuario</button>
+                </form>
             </li>
         </ul>
     </section>
+
+    <th:block layout:fragment="js">
+        <script src="/js/confirm-delete.js"></script>
+    </th:block>
 
 </body>
 
