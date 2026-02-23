@@ -21,7 +21,6 @@ public class UserDto {
     private String name;
 
     @NotBlank(message = "El email es requerido")
-    @Size(min = 3, max = 10, message = "El email debe tener entre 3 y 10 caracteres")
     @Email(message = "El email debe ser valido")
     private String email;
 }

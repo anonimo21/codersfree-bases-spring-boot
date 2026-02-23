@@ -9,15 +9,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.codersfree.prueba.dto.UserDto;
 import com.codersfree.prueba.model.User;
+import com.codersfree.prueba.repository.UserRepository;
 
 import jakarta.validation.Valid;
 
 @Controller
 public class UserController {
+
+    private final UserRepository userRepository;
+
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @GetMapping("/users")
     public String index(Model model) {
@@ -50,6 +55,18 @@ public class UserController {
             model.addAttribute("userDto", userDto);
             return "users/create";
         }
+
+        /*User user = new User();
+        user.setName(userDto.getName());
+        user.setEmail(userDto.getEmail());*/
+
+        User user = User.builder()
+                .name(userDto.getName())
+                .email(userDto.getEmail())
+                .build();
+
+        userRepository.save(user);
+
         return "redirect:/users";
     }
 
