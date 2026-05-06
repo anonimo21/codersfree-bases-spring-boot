@@ -11,8 +11,8 @@ import com.codersfree.prueba.repository.UserRepository;
 @Service
 public class UserService {
 
-    //@Autowired
-    //private UserRepository userRepository;
+    // @Autowired
+    // private UserRepository userRepository;
 
     private final UserRepository userRepository;
 
@@ -29,6 +29,22 @@ public class UserService {
                 .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado con ID: " + id));
     }
 
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    public List<User> findByName(String name) {
+        return userRepository.findByName(name);
+    }
+
+    public List<User> findByNameContainingIgnoreCase(String name) {
+        return userRepository.findByNameContainingIgnoreCase(name);
+    }
+
+    public List<User> findByNameAndEmail(String name, String email) {
+        return userRepository.findByNameAndEmail(name, email);
+    }
+
     public User save(UserDto userDto) {
         User user = User.builder()
                 .name(userDto.getName())
@@ -41,7 +57,7 @@ public class UserService {
         User user = findById(id);
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
-        
+
         return userRepository.save(user);
     }
 
